@@ -6,11 +6,40 @@ enum Direction {
     Right,
 }
 
+// Struct
+struct Color {
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+
+// Tuple Struct
+struct FavColor(u8, u8, u8);
+
+// Struct with impl
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn print_description(&self) {
+        println!("Rectangle: {} x {}", self.width, self.height);
+    }
+
+    fn is_square(&self) -> bool {
+        self.width == self.height
+    }
+}
+
 fn main() {
     //  single line comment
     /*
         multi line comment
         multi line comment
+    */
+    /*
+        u8: 0 - 255
     */
     let i: i32 = 5;
     let f: f32 = 3.6;
@@ -19,12 +48,73 @@ fn main() {
     const MAX_NUMBER: u32 = 9;
     let t: (u32, f32, u32, (i32, i32)) = (1, 2.3, 5, (3, 7));
 
+    // USING STRING L22
+    let mut my_string = String::from("Hello World");
+    // length
+    println!("Length: {}", my_string.len());
+    // is Empty?
+    println!("String is empty? {}", my_string.is_empty());
+    // split string by white space
+    for token in my_string.split_whitespace() {
+        println!("{}", token);
+    }
+    // does string contains world
+    println!(
+        "Does string contains world? {}",
+        my_string.contains("World")
+    );
+    // append string
+    my_string.push_str("hey my friend");
+    println!("{}", my_string);
+
+    // USING STRUCT IMPL L21
+    let rect = Rectangle {
+        width: 20,
+        height: 50,
+    };
+    rect.print_description();
+    println!("Rectangle is a square: {}", rect.is_square());
+
+    // USING ARRAY L20
+    let a: [i32; 5] = [1, 2, 3, 4, 6];
+    println!("array {:?}", a[1]);
+    for n in a.iter() {
+        println!("array items {}", n);
+    }
+    for i in 0..a.len() {
+        println!("arr length item {}", a[i]);
+    }
+    // Create an array with 50 items of 2 and println!
+    // let ab = [2; 50];
+    // for i in 0..ab.len() {
+    //     println!("ab {}", ab[i]);
+    // }
+
+    // USING STRUCTS L17
+    let mut bg = Color {
+        red: 255,
+        green: 70,
+        blue: 15,
+    };
+    // cannot change struct unless make struct mut
+    bg.blue = 200;
+    println!("{} {} {}", bg.red, bg.green, bg.blue);
+
+    // USING TUPLE STRUCT L18
+    let mut red = FavColor(255, 0, 0);
+    // cannot change struct unless make struct mut
+    red.2 = 60;
+    println!("red is {} {} {}", red.0, red.1, red.2);
+
     // USING REFERENCES T16
     let mut m = 10;
     // mr is a mutable reference of m
     let mr = &mut m;
     *mr += 1;
     println!("m is {}", m);
+
+    // PASS BY REFERENCE STRUCT L19
+    print_color(&bg);
 
     // using enums
     match d {
@@ -62,6 +152,12 @@ fn shout(num: u32) {
     }
 }
 
+// using function with return type
 fn is_even(num: u32) -> bool {
     num % 2 == 0
+}
+
+// PASS BY REFERENCE STRUCT L19
+fn print_color(c: &Color) {
+    println!("Color - R:{} G:{} B:{}", c.red, c.green, c.blue);
 }

@@ -62,6 +62,16 @@ fn main() {
     const MAX_NUMBER: u32 = 9;
     let t: (u32, f32, u32, (i32, i32)) = (1, 2.3, 5, (3, 7));
 
+    // OWNERSHIP, MOVING, BORROWING
+    let x: u32 = 32;
+    print_primitive(x);
+    println!("primitive {}", x);
+    let str_x = String::from("x org");
+    print_reference(str_x);
+    // println!("reference string {}", str_x);  // Error borrow of moved value: `str_x` value borrowed here after move
+    let str_y = String::from("y org");
+    print_reference_again(&str_y);
+
     // READ FILE IN RUST L25
     let mut file = File::open("info.txt").expect("Can't open file");
     let mut contents = String::new();
@@ -199,4 +209,16 @@ fn is_even(num: u32) -> bool {
 // PASS BY REFERENCE STRUCT L19
 fn print_color(c: &Color) {
     println!("Color - R:{} G:{} B:{}", c.red, c.green, c.blue);
+}
+
+fn print_primitive(t: u32) {
+    println!("Primitive Copy {}", t)
+}
+
+fn print_reference(t: String) {
+    println!("Reference {}", t)
+}
+
+fn print_reference_again(t: &String) {
+    println!("Reference {}", t)
 }

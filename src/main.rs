@@ -1,3 +1,6 @@
+use std::fs::File;
+use std::io::prelude::*;
+
 #[allow(dead_code)]
 enum Direction {
     Up,
@@ -32,6 +35,17 @@ impl Rectangle {
     }
 }
 
+struct Person {
+    name: String,
+    age: u8,
+}
+
+impl ToString for Person {
+    fn to_string(&self) -> String {
+        return format!("My name is {} and I am {}", self.name, self.age);
+    }
+}
+
 fn main() {
     //  single line comment
     /*
@@ -47,6 +61,31 @@ fn main() {
     let d: Direction = Direction::Left;
     const MAX_NUMBER: u32 = 9;
     let t: (u32, f32, u32, (i32, i32)) = (1, 2.3, 5, (3, 7));
+
+    // READ FILE IN RUST L25
+    let mut file = File::open("info.txt").expect("Can't open file");
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)
+        .expect("Oops! Can not read the file...");
+    println!("File contents:\n\n{}", contents);
+
+    // VECTORS L24
+    let my_vector: Vec<i32> = Vec::new();
+    println!("{:?}", my_vector);
+    let mut my_vector2 = vec![1, 2, 3, 4];
+    my_vector2.push(59);
+    my_vector2.remove(1); // use element index
+    println!("{}", my_vector2[2]);
+    for number in my_vector2.iter() {
+        println!("{}", number);
+    }
+
+    // IMPLEMENTING TRAITS L23
+    let dom = Person {
+        name: String::from("Dominic"),
+        age: 21,
+    };
+    println!("{}", dom.to_string());
 
     // USING STRING L22
     let mut my_string = String::from("Hello World");

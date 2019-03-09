@@ -1,6 +1,11 @@
 use std::fs::File;
 use std::io::prelude::*;
 
+mod cli;
+mod input;
+mod my_match;
+mod my_traits;
+
 #[allow(dead_code)]
 enum Direction {
     Up,
@@ -47,6 +52,10 @@ impl ToString for Person {
 }
 
 fn main() {
+    cli::run();
+    my_traits::run();
+    my_match::run();
+    input::run();
     //  single line comment
     /*
         multi line comment

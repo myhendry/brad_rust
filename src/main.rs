@@ -3,7 +3,9 @@ use std::io::prelude::*;
 
 mod cli;
 mod input;
+mod my_hash;
 mod my_match;
+mod my_rand;
 mod my_traits;
 
 #[allow(dead_code)]
@@ -52,6 +54,8 @@ impl ToString for Person {
 }
 
 fn main() {
+    my_rand::run();
+    my_hash::run();
     cli::run();
     my_traits::run();
     my_match::run();

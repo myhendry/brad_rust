@@ -1,11 +1,15 @@
 use std::fs::File;
 use std::io::prelude::*;
 
+// MULTIPLE MODS L34
 mod cli;
 mod input;
 mod my_hash;
 mod my_match;
+mod my_modules;
 mod my_rand;
+mod my_regex;
+mod my_str;
 mod my_traits;
 
 #[allow(dead_code)]
@@ -54,6 +58,9 @@ impl ToString for Person {
 }
 
 fn main() {
+    my_modules::run();
+    my_regex::run();
+    my_str::run();
     my_rand::run();
     my_hash::run();
     cli::run();

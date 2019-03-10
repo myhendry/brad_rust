@@ -4,7 +4,9 @@ use std::io::prelude::*;
 // MULTIPLE MODS L34
 mod cli;
 mod input;
+mod my_enum;
 mod my_hash;
+mod my_http;
 mod my_match;
 mod my_modules;
 mod my_option;
@@ -59,6 +61,8 @@ impl ToString for Person {
 }
 
 fn main() {
+    my_http::run();
+    my_enum::run();
     my_option::run();
     my_modules::run();
     my_regex::run();

@@ -7,6 +7,7 @@ mod input;
 mod my_hash;
 mod my_match;
 mod my_modules;
+mod my_option;
 mod my_rand;
 mod my_regex;
 mod my_str;
@@ -58,6 +59,7 @@ impl ToString for Person {
 }
 
 fn main() {
+    my_option::run();
     my_modules::run();
     my_regex::run();
     my_str::run();

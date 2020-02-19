@@ -2,6 +2,10 @@ use std::fs::File;
 use std::io::prelude::*;
 
 // MULTIPLE MODS L34
+mod b_print;
+mod b_strings;
+mod b_types;
+mod b_var;
 mod cli;
 mod input;
 mod my_enum;
@@ -61,6 +65,10 @@ impl ToString for Person {
 }
 
 fn main() {
+    b_print::run();
+    b_var::run();
+    b_types::run();
+    b_strings::run();
     my_http::run();
     my_enum::run();
     my_option::run();

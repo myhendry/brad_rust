@@ -2,10 +2,20 @@ use std::fs::File;
 use std::io::prelude::*;
 
 // MULTIPLE MODS L34
+mod b_arrays;
+mod b_cli;
+mod b_conditionals;
+mod b_enums;
+mod b_functions;
+mod b_loops;
+mod b_pointer_ref;
 mod b_print;
 mod b_strings;
+mod b_structs;
+mod b_tuples;
 mod b_types;
 mod b_var;
+mod b_vectors;
 mod cli;
 mod input;
 mod my_enum;
@@ -69,6 +79,16 @@ fn main() {
     b_var::run();
     b_types::run();
     b_strings::run();
+    b_tuples::run();
+    b_arrays::run();
+    b_vectors::run();
+    b_conditionals::run();
+    b_loops::run();
+    b_functions::run();
+    b_pointer_ref::run();
+    b_structs::run();
+    b_enums::run();
+    b_cli::run();
     my_http::run();
     my_enum::run();
     my_option::run();

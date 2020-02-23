@@ -28,6 +28,9 @@ mod my_rand;
 mod my_regex;
 mod my_str;
 mod my_traits;
+mod playground;
+mod rustlang3;
+mod rustlang4;
 
 #[allow(dead_code)]
 enum Direction {
@@ -75,32 +78,35 @@ impl ToString for Person {
 }
 
 fn main() {
-    b_print::run();
-    b_var::run();
-    b_types::run();
-    b_strings::run();
-    b_tuples::run();
-    b_arrays::run();
-    b_vectors::run();
-    b_conditionals::run();
-    b_loops::run();
-    b_functions::run();
-    b_pointer_ref::run();
-    b_structs::run();
-    b_enums::run();
-    b_cli::run();
-    my_http::run();
-    my_enum::run();
-    my_option::run();
-    my_modules::run();
-    my_regex::run();
-    my_str::run();
-    my_rand::run();
-    my_hash::run();
-    cli::run();
-    my_traits::run();
-    my_match::run();
-    input::run();
+    // rustlang4::run();
+    // rustlang3::run();
+    playground::run();
+    // b_print::run();
+    // b_var::run();
+    // b_types::run();
+    // b_strings::run();
+    // b_tuples::run();
+    // b_arrays::run();
+    // b_vectors::run();
+    // b_conditionals::run();
+    // b_loops::run();
+    // b_functions::run();
+    // b_pointer_ref::run();
+    // b_structs::run();
+    // b_enums::run();
+    // b_cli::run();
+    // my_http::run();
+    // my_enum::run();
+    // my_option::run();
+    // my_modules::run();
+    // my_regex::run();
+    // my_str::run();
+    // my_rand::run();
+    // my_hash::run();
+    // cli::run();
+    // my_traits::run();
+    // my_match::run();
+    // input::run();
     //  single line comment
     /*
         multi line comment

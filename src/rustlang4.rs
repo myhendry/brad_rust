@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::fs::File;
 
 pub fn run() {
-  //TODO Vectors
+  //*! VECTORS
   let x = vec![1, 2, 3, 4];
   let mut v: Vec<i32> = Vec::new();
   let mut w: Vec<i32> = Vec::new();
@@ -38,7 +38,7 @@ pub fn run() {
 
   println!("{:?}", &r);
 
-  //TODO HashMap
+  //*! HASHMAPS
   let mut hm = HashMap::new();
 
   hm.insert(String::from("random"), 12);

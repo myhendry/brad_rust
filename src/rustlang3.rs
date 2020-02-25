@@ -69,7 +69,7 @@ fn division(x: f64, y: f64) -> Option<f64> {
 }
 
 pub fn run() {
-  //TODO Enums & Options: Using Direction and Keys
+  //*! ENUMS: USING DIRECTION & KEYS
   let u = Direction::Up(Point { x: 0, y: 1 });
   let k = u.match_direction();
   let x = k.destruct();
@@ -85,7 +85,7 @@ pub fn run() {
     println!("They are equal")
   }
 
-  //TODO Enums & Options: Using Shape
+  //*! ENUMS: USING SHAPE
   let r = Shape::Rectangle {
     width: 10,
     height: 70,
@@ -102,7 +102,7 @@ pub fn run() {
   let ac = c.area();
   println!("{}", ac);
 
-  // TODO Using Options
+  //*! OPTIONS
   let res = division(5.0, 7.0);
   match res {
     Some(x) => println!("{:.10}", x),

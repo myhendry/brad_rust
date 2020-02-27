@@ -1,120 +1,138 @@
-use std::collections::HashMap;
-use std::fs::File;
+#![allow(dead_code)]
+
+/*
+  Struct
+  Struct Methods
+  Enum
+  Enum Methods
+*/
+
+//*! ENUM
+#[derive(Debug)]
+enum Status {
+  On,
+  Off,
+}
+
+//*! 1. ENUMS: USING DIRECTION & KEYS
+#[derive(Debug)]
+enum Direction {
+  Up(Point),
+  Down(Point),
+  Left(Point),
+  Right(Point),
+}
+
+#[derive(Debug)]
+struct Point {
+  x: i32,
+  y: i32,
+}
+
+impl Direction {
+  fn match_direction(&self) -> Keys {
+    match *self {
+      Direction::Up(_) => Keys::UpKey(String::from("Pressed w")),
+      Direction::Down(_) => Keys::DownKey(String::from("Pressed s")),
+      Direction::Left(_) => Keys::LeftKey(String::from("Pressed a")),
+      Direction::Right(_) => Keys::RightKey(String::from("Pressed d")),
+    }
+  }
+}
+
+#[derive(Debug)]
+enum Keys {
+  UpKey(String),
+  DownKey(String),
+  LeftKey(String),
+  RightKey(String),
+}
+
+impl Keys {
+  fn destruct(&self) -> &String {
+    match *self {
+      Keys::UpKey(ref s) => s,
+      Keys::DownKey(ref s) => s,
+      Keys::LeftKey(ref s) => s,
+      Keys::RightKey(ref s) => s,
+    }
+  }
+}
+
+//*! 1. ENUMS: USING SHAPE
+enum Shape {
+  Rectangle { width: u32, height: u32 },
+  Square(u32),
+  Circle(f64),
+}
+
+impl Shape {
+  fn area(&self) -> f64 {
+    match *self {
+      Shape::Rectangle { width, height } => (width * height) as f64,
+      Shape::Square(ref s) => (s * s) as f64,
+      Shape::Circle(ref r) => 3.14 * (r * r),
+    }
+  }
+}
+
+//*! 1. OPTION - is a basic enum type
+/*
+  enum Option<T> {
+    Some(T),
+    None,
+  }
+*/
+
+fn division(x: f64, y: f64) -> Option<f64> {
+  if y == 0.0 {
+    None
+  } else {
+    Some(x / y)
+  }
+}
 
 pub fn run() {
-  //*! VECTORS
-  let x = vec![1, 2, 3, 4];
-  let mut v: Vec<i32> = Vec::new();
-  let mut w: Vec<i32> = Vec::new();
+  let status = Status::Off;
+  println!("status {:?}", status);
 
-  v.push(5);
-  v.push(6);
-  v.push(7);
-  v.push(8);
+  //*! 2. ENUMS: USING DIRECTION & KEYS
+  let u = Direction::Up(Point { x: 0, y: 1 });
+  let k = u.match_direction();
+  let x = k.destruct();
 
-  for i in &v {
-    println!("{}", i);
+  println!("{:?}", x);
+
+  let u = 10;
+  let v = &u;
+  let ref z = u;
+
+  // THEY ARE EQUAL
+  if z == v {
+    println!("They are equal")
   }
 
-  v.push(10);
-  println!("v {:?} {} {}", &v, v.len(), v.capacity());
-  println!("v {:?}", v.pop());
-
-  println!("w {:?} {} {}", &w, w.len(), w.capacity());
-  println!("w {:?}", w.pop());
-
-  #[derive(Debug)]
-  enum Example {
-    Float(f64),
-    Int(i32),
-    Text(String),
-  }
-
-  let r = vec![
-    Example::Int(142),
-    Example::Float(12.32),
-    Example::Text(String::from("string")),
-  ];
-
-  println!("{:?}", &r);
-
-  //*! HASHMAPS
-  let mut hm = HashMap::new();
-
-  hm.insert(String::from("random"), 12);
-  hm.insert(String::from("strings"), 49);
-  hm.remove(&String::from("strings"));
-
-  for (k, v) in &hm {
-    println!("{} : {}", k, v);
-  }
-
-  match hm.get(&String::from("random")) {
-    Some(&n) => println!("{}", n),
-    _ => println!("no match"),
-  }
-
-  let s = Some('c');
-
-  match s {
-    Some(i) => println!("{}", i),
-    _ => {}
-  }
-
-  if let Some(i) = s {
-    println!("{}", i);
-  } else {
-    {}
-  }
-
-  let mut g = Some(0);
-
-  loop {
-    match g {
-      Some(i) => {
-        if i > 19 {
-          println!("Quit");
-          g = None;
-        } else {
-          println!("{}", i);
-          g = Some(i + 2);
-        }
-      }
-      _ => {
-        break;
-      }
-    }
-  }
-
-  while let Some(i) = g {
-    if i > 19 {
-      println!("Quit");
-      g = None;
-    } else {
-      println!("{}", i);
-      g = Some(i + 2);
-    }
-  }
-
-  let f = 24.243243_f32;
-  let i = f as u8;
-  let c = i as char;
-
-  println!("{} {} {}", f, i, c);
-  println!("{}", 255 as char);
-  println!("{} {}", 12 as char, 14 as char);
-
-  enum Result<T, E> {
-    Ok(T),
-    Err(E),
-  }
-
-  let ff = File::open("test.txt");
-
-  let ff = match ff {
-    Ok(file) => file,
-    Err(error) => {
-      panic!("There was a problem opening the file: {:?}", error);
-    }
+  //*! 2. ENUMS: USING SHAPE
+  let r = Shape::Rectangle {
+    width: 10,
+    height: 70,
   };
+  let s = Shape::Square(10);
+  let c = Shape::Circle(4.5);
+
+  let ar = r.area();
+  println!("{}", ar);
+
+  let aq = s.area();
+  println!("{}", aq);
+
+  let ac = c.area();
+  println!("{}", ac);
+
+  //*! 2. OPTION - is a basic enum type
+  let res = division(5.0, 7.0);
+  match res {
+    Some(x) => println!("{:.10}", x), //{:10} limited to 10 decimal points
+    None => println!("cannot divide by 0"),
+  }
 }

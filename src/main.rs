@@ -34,11 +34,11 @@ extern crate serde_derive; // 42A2 Parsing JSON
 // mod rustlang2;
 // mod rustlang3;
 // mod rustlang4;
-mod rustlang5;
+// mod rustlang5;
 mod rustlang6;
 
 fn main() {
-    rustlang5::run();
+    // rustlang5::run();
     rustlang6::run();
     // rustlang4::run();
     // rustlang3::run();

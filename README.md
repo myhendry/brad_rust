@@ -1,3 +1,5 @@
+NEXT: Traits & Generic Types 7:30
+
 # Rustlang Playground
 
 https://play.rust-lang.org/

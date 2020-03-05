@@ -1,4 +1,6 @@
+use std::fmt;
 use std::ops;
+use std::ops::Mul;
 
 //*! CLONE & COPY
 /*
@@ -79,6 +81,89 @@ impl Shape for Circle {
   }
 }
 
+//*!
+struct Fib {
+  c: u32,
+  n: u32,
+}
+
+impl Iterator for Fib {
+  type Item = u32;
+
+  fn next(&mut self) -> Option<u32> {
+    let n = self.c + self.n;
+    self.c = self.n;
+    self.n = n;
+
+    Some(self.c)
+  }
+}
+
+fn fib() -> Fib {
+  Fib { c: 1, n: 1 }
+}
+
+//*! GENERICS WITH STRUCTS
+struct Square<T> {
+  x: T,
+}
+
+//*! GENERICS WITH FUNCTIONS
+fn p<T: fmt::Debug>(x: T) {
+  println!("{:?}", x);
+}
+
+//*! GENERICS WITH IMPLEMENTATION BLOCK
+struct AA<T> {
+  x: T,
+}
+
+impl<VV> AA<VV> {
+  fn item(&self) -> &VV {
+    &self.x
+  }
+}
+
+//*! GENERICS PATTERN MATCHING TYPE
+struct DD<U, V> {
+  x: U,
+  y: V,
+}
+
+struct EE<V> {
+  x: V,
+  y: V,
+}
+
+//*! GENERICS WITH TRAITS
+trait GShape<T> {
+  fn area(&self) -> T;
+}
+
+struct GRectangle<T: Mul> {
+  x: T,
+  y: T,
+}
+
+impl<T: Copy> GShape<T> for GRectangle<T>
+where
+  T: Mul<Output = T>,
+{
+  fn area(&self) -> T {
+    self.x * self.y
+  }
+}
+
+// Alternative Syntax - same as above
+/*
+impl<T: Mul<Output = T> + Copy> GShape<T> for GRectangle<T>
+{
+  fn area(&self) -> T {
+    self.x * self.y
+  }
+}
+*/
+
 pub fn run() {
   //*! USING TRAITS
   let c = Circle { radius: 100.132 };
@@ -117,4 +202,41 @@ pub fn run() {
     println!("leaving inner scope 1");
   }
   println!("program ending");
+
+  for j in fib().take(10) {
+    println!("{}", j);
+  }
+
+  for j in fib().skip(14).take(10) {
+    println!("{}", j);
+  }
+
+  let mut f = fib();
+
+  println!("{:?}", f.next());
+  println!("{:?}", f.next());
+  println!("{:?}", f.next());
+  println!("{:?}", f.next());
+  println!("{:?}", f.next());
+
+  //*! USING GENERICS WITH STRUCTS
+  let s = Square { x: 10 };
+  let s = Square { x: 1.0 };
+  let s = Square { x: "Hello" };
+  let s = Square { x: 'c' };
+
+  //*! USING GENERICS WITH FUNCTIONS
+  p(10);
+  p(String::from("String!"));
+
+  //*! USING GENERICS WITH IMPLEMENTATION BLOCK
+  let vv = AA { x: "Hello" };
+
+  vv.item();
+
+  //*! USING GENERICS WITH TRAITS
+  let r1 = GRectangle { x: 10, y: 20 };
+  let r2 = GRectangle { x: 10.10, y: 20.21 };
+
+  println!("{} {}", r1.area(), r2.area())
 }

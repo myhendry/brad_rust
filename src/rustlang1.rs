@@ -1,6 +1,6 @@
 pub fn run() {
   // PRIMITIVE TYPES - implement COPY TRAITS
-  // integer: i8, u8, i16, u16, i32, u32, i64, u64, isize, usize
+  // numbers: i8, u8, i16, u16, i32, u32, i64, u64, isize, usize
   // float: f32, f64
   // bool: true, false
   // char

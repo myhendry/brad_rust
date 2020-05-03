@@ -1,7 +1,9 @@
-#[macro_use]
+// #[macro_use]
 extern crate serde_derive; // 42A2 Parsing JSON
 
 // MULTIPLE MODS L34
+mod c_doug;
+// mod t_playground;
 // mod b_arrays;
 // mod b_cli;
 // mod b_conditionals;
@@ -35,11 +37,15 @@ extern crate serde_derive; // 42A2 Parsing JSON
 // mod rustlang3;
 // mod rustlang4;
 // mod rustlang5;
-mod rustlang6;
+// mod rustlang6;
+// mod blackboard;
 
 fn main() {
+    c_doug::run();
+    // t_playground::run();
+    // blackboard::run();
     // rustlang5::run();
-    rustlang6::run();
+    // rustlang6::run();
     // rustlang4::run();
     // rustlang3::run();
     // rustlang1::run();
